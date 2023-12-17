@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class player : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 6f;
     private Rigidbody2D rb;
     public float horizontal;
     private bool flipRight = true;
@@ -15,8 +15,7 @@ public class Player : MonoBehaviour
     public Transform GroundCheck;
     private float GroundCheckRadius;
     private Vector3 respawnPoint;
-    public GameObject deadZone;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,50 +24,78 @@ public class Player : MonoBehaviour
         respawnPoint = transform.position;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        jump();
-        CheckingGround();
-        deadZone.transform.position = new Vector2(transform.position.x, deadZone.transform.position.y);
-        void jump()
+        horizontal = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        animator.SetFloat("moveX", Mathf.Abs(horizontal));
+
+        /*   if(horizontal > 0 && !flipRight)
+           {
+               Flip();
+           }else if(horizontal < 0 && flipRight)
+           {
+               Flip();
+           }
+        */
+        if ((horizontal > 0 && !flipRight) || (horizontal < 0 && flipRight))
         {
-            if (onGround && Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            }
+            transform.localScale *= new Vector2(-1, 1);
+            flipRight = !flipRight;
         }
 
-        horizontal = Input.GetAxis("Horizontal") * speed;
-        rb.velocity = new Vector2(horizontal, rb.velocity.y);//(x,y)
-        animator.SetFloat("moveX", Mathf.Abs(horizontal));
-        if (horizontal > 0 && !flipRight)
+        Jump();
+        CheckingGround();
+
+
+    }
+    void Flip()
+    {
+        flipRight = !flipRight;
+        transform.Rotate(0, 180, 0);
+    }
+
+    void Jump()
+    {
+        if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
-            Flip();
-        }
-        else if (horizontal < 0 && flipRight)
-        {
-            Flip();
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
     void CheckingGround()
     {
         onGround = Physics2D.OverlapCircle(GroundCheck.position, GroundCheckRadius, Ground);
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "DeadZone")
         {
             transform.position = respawnPoint;
-        }else if(collision.tag == "checkpoint") {
+        }
+        else if (collision.tag == "checkpoint")
+        {
             respawnPoint = transform.position;
         }
+
+
     }
-    void Flip()
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        flipRight = !flipRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x = theScale.x * (-1);
-        transform.localScale = theScale;
+        if (collision.gameObject.name.Equals("platform"))
+        {
+            this.transform.parent = collision.transform;
+        }
+    }
+
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Equals("platform"))
+        {
+            this.transform.parent = null;
+        }
     }
 }
