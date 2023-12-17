@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - bulet
   - Bullet
+  - Teleporter
+  - Teleport
+  - portal
   layers:
   - Default
   - TransparentFX
