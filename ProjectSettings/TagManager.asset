@@ -12,6 +12,8 @@ TagManager:
   - Teleporter
   - Teleport
   - portal
+  - GameObject
+  - gameObject
   layers:
   - Default
   - TransparentFX

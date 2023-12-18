@@ -7,18 +7,18 @@ public class Teleport : MonoBehaviour
     // Start is called before the first frame update
     public GameObject pointTeleport;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.GameObject.tag == "Player")
+        private void OnTriggerEnter2D(Collider2D collision)
         {
+            if(collision.tag == "Player")
+            {
 
 
-            collision.GameOject.transform.position = pointTeleport.GameObject.transform.position;
+                collision.transform.position = pointTeleport.transform.position;
 
 
-        }
+            }
                 
                 
-     }
-
+         }
+    
 }
