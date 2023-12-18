@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private bool movingLeft;
     private float leftEdge;
     private float rightEdge;
-
+    public GameObject DroppedCoin;
     private int Health = 3;
 
 
@@ -66,6 +66,7 @@ public class Enemy : MonoBehaviour
         if (Health <= 0)
         {
             gameObject.SetActive(false);
+            Instantiate(DroppedCoin, transform.position, transform.rotation);
         }
     }
 }
