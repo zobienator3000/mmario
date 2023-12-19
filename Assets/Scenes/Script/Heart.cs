@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class heart : MonoBehaviour
+public class Heart : MonoBehaviour
 {
     [SerializeField] private float heartValue;
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && !collision.GetComponent<Health>().isHealthMax())
+        if (collision.tag == "Player")
         {
-            collision.GetComponent<Health>().addHeath(heartValue);
+            collision.GetComponent<health>().addHeath(heartValue);
             gameObject.SetActive(false);
         }
     }
