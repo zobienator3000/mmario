@@ -11,21 +11,17 @@ public class Enemy : MonoBehaviour
     private bool movingLeft;
     private float leftEdge;
     private float rightEdge;
+
+    public int health;
     public GameObject DroppedCoin;
-    private int Health = 3;
-
-
     private void Awake()
     {
         leftEdge = transform.position.x - moveDistance;
         rightEdge = transform.position.x + moveDistance;
     }
+
+
     private void Update()
-    {
-        moving();
-        health();
-    }
-    void moving()
     {
         if (movingLeft)
         {
@@ -49,24 +45,22 @@ public class Enemy : MonoBehaviour
                 movingLeft = true;
             }
         }
+        if (health == 0)
+        {
+            Destroy(gameObject);
+            Instantiate(DroppedCoin, transform.position, transform.rotation);
+        }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<health>().TakeDamage(damage);
+            collision.GetComponent<Health>().TakeDamage(damage);
         }
-        if (collision.tag == "Bullet")
+        if (collision.CompareTag("Bullet"))
         {
-            Health -= 1;
-        }
-    }
-    void health()
-    {
-        if (Health <= 0)
-        {
-            gameObject.SetActive(false);
-            Instantiate(DroppedCoin, transform.position, transform.rotation);
+            health = health - 3;
         }
     }
 }

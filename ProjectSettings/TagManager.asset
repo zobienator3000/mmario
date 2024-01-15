@@ -14,6 +14,7 @@ TagManager:
   - portal
   - GameObject
   - gameObject
+  - DroppedCoin
   layers:
   - Default
   - TransparentFX

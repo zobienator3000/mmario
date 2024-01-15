@@ -10,7 +10,7 @@ public class Heart : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<health>().addHeath(heartValue);
+            collision.GetComponent<Health>().addHeath(heartValue);
             gameObject.SetActive(false);
         }
     }
