@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
         }
         if (collision.CompareTag("Bullet"))
         {
-            health = health - 3;
+            health = health - 1;
         }
     }
 }
