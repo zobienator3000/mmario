@@ -54,23 +54,13 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.tag == "Player" && health > 0)
-        //{
-        //    collision.GetComponent<Health>().TakeDamage(damage);
-        //}
-        if (collision.tag == "Bullet")
+        if (collision.tag == "Player")
         {
-            damaged();
+            collision.GetComponent<Health>().TakeDamage(damage);
+        }
+        if (collision.CompareTag("Bullet"))
+        {
+            health = health - 1;
         }
     }
-    IEnumerator Die()
-    {
-        animator.Play("enemy_die");
-        transform.position = new Vector2(transform.position.x, yy);
-        yield return new WaitForSeconds(1f);
-        gameObject.SetActive(false);
-        Instantiate(DroppedCoin, transform.position, transform.rotation);
-
-        void health()
-     }
 }
