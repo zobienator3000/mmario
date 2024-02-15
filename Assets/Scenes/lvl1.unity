@@ -916,7 +916,6 @@ GameObject:
   m_Component:
   - component: {fileID: 260659353}
   - component: {fileID: 260659352}
-  - component: {fileID: 260659354}
   - component: {fileID: 260659351}
   m_Layer: 0
   m_Name: Finish Teleport
@@ -1018,19 +1017,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &260659354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260659350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172cf3a8ecdaa5249886de6c26d80e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointTeleport: {fileID: 169852962}
 --- !u!1 &326201255
 GameObject:
   m_ObjectHideFlags: 0

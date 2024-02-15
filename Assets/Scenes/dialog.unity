@@ -412,8 +412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1088927785}
   lines:
-  - "\u0438\u043B\u0448\u043F\u0448\u0448\u0440\u0449\u0449\u0436\u0449\u0436"
-  - "\u044E\u0431\u044C\u0436\u0437\u0449\u0448\u0440\u0449\u0440\u0438\u0440\u0440"
+  - "\u043F\u0440\u0438\u0432\u0435\u0442 \u043F\u0443\u043F\u0441\u0438\u043A"
+  - "\u0442\u044B \u0447\u0442\u043E \u0433\u0435\u0439?"
   TextSpeed: 0.3
 --- !u!114 &1088927785
 MonoBehaviour:
